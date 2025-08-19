@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Love Confession Website | Aoudumber Bade">
+  <meta name="github" content="https://github.com/Aoudumber-Bade">
+  <link rel="website icon" type="png" href="heart.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Hi, Miss Servidad!</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="items"></div>
+    <div id="text" onclick="buttun();">Click Here, Baby!</div>
+    <div class="traitym">
+      <!-- SVG heart graphic (unchanged) -->
+    </div>
+    <div class="img">
+      <img src="./img/bebe.png" alt="">
+    </div>
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="text1">My heartBeat</div>
+        <span id="number">1000</span>
+      </div>
+    </div>
+    <div class="container" style="display: none;">
+      <div class="toast">
+        <div class="toast-wrapper">
+          <div class="img-crush">
+            <img src="./img/crush.png" alt="">
+          </div>
+          <div class="text-crush">
+            <p>I have something to say. Click the little envelope to read it!</p>
+          </div>
+          <div class="icon" onclick="mail();">
+            <i class="fa-regular fa-envelope"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invisible iframe for background music -->
+  <iframe src="audio-player.html" id="music-frame" style="position:fixed;bottom:0;left:0;width:0;height:0;border:none;"></iframe>
+
+  <script src="./java.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/clicklove.js"></script>
+
+  <!-- Trigger music playback on user interaction -->
+  <script>
+    document.getElementById('text').addEventListener("click", function () {
+      document.querySelector('.container').style.display = "flex";
+
+      const iframe = document.getElementById('music-frame');
+      if (iframe && iframe.contentWindow) {
+        try {
+          const audio = iframe.contentWindow.document.getElementById('bg-music');
+          if (audio && audio.paused) {
+            audio.play().catch(err => {
+              console.warn('Autoplay blocked:', err);
+            });
+          }
+        } catch (e) {
+          console.warn('Unable to access iframe audio:', e);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
